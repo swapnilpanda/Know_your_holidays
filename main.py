@@ -1,6 +1,6 @@
 
 from calendar_info import *
-def get_holidays(Year):
+def get_holidays(Year,Country):
     #Weekday Functions
     def weeknum(dayname):
         if dayname == 'Monday':   return 0
@@ -32,7 +32,7 @@ def get_holidays(Year):
     #Getting holidays from Vakanti
 
     holidays = Holidays()
-    holidays_others=(holidays.get_holidays(years=Year, country='Bangladesh'))
+    holidays_others=(holidays.get_holidays(years=Year, country=Country))
 
     holidays_o=list(holidays_others.keys())
 
@@ -67,6 +67,6 @@ def get_holidays(Year):
             if i==Dates['Dates'][j]:
                 Dates['Type'][j]='Holiday'
 
-    Dates.to_csv(f'Dates_{Year}.csv')
+    Dates.to_csv(f'Dates_{Year}_{Country}.csv')
 
-get_holidays(2019)
+get_holidays(2019, 'India')
