@@ -10,4 +10,4 @@ Just download the files and run
 
 python3 main.py
 
-change the year in the last line according to needs
+change the year in the last line according to your needs
