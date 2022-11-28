@@ -6,7 +6,8 @@ class Holidays:
         self.data_type = data_type
         self.calender_extractor = ExtractCalendar() #years=self.years, country=self.country
 
-    def get_holidays(self,  years='2021', country="bangladesh"):
+    def get_holidays(self, years='2021', country="bangladesh"):
+
         years=str(years)
         self.years = [int(year.strip()) for year in years.split(",")]
         holidays = None
@@ -17,6 +18,7 @@ class Holidays:
             holidays = self._format_holiday_api(holiday_data)
         elif self.data_type == "csv":
             holidays = self._format_dataframe(columns, holiday_data)
+
         return holidays
 
     def _format_json(self, columns, collection_of_holidays):

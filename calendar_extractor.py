@@ -16,7 +16,7 @@ class ExtractCalendar:
         columns = None
         for year in self.years:
             columns, holiday_information[year] = self.extract_single_calendar(year, country)
-
+        print(columns)
         return columns, holiday_information
     def extract_single_calendar(self, year, country):
         url = f"https://www.officeholidays.com/countries/{country}/{year}"
@@ -27,19 +27,21 @@ class ExtractCalendar:
         gdp = soup.find_all("table", attrs={"class": "country-table"})
         holiday_info = None
         columns = None
+        holiday_info = []
 
         for table in gdp:
             body = table.find_all("tr")
             head = body[0]
             web_data = body[1:]
             columns = []
+
             for item in head.find_all("th"):  # loop through all th elements
                 # convert the th elements to text and strip "\n"
                 item = (item.text).rstrip("\n")
                 # append the clean column name to headings
                 columns.append(item)
 
-            holiday_info = []
+
             for row_num in range(len(web_data)):  # A row at a time
                 row = []  # this will old entries for one row
                 i = 0
@@ -58,4 +60,10 @@ class ExtractCalendar:
                 # append one row to all_rows
                 holiday_info.append(row)
                 # holiday_info[holidate.isoformat()] = row
+                print(columns)
+                print(holiday_info)
+
+            print('here')
+            print(holiday_info)
+
         return columns, holiday_info
